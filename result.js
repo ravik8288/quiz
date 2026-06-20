@@ -32,19 +32,82 @@
     popup.hidden = true;
   }
 
-  async function claimReward() {
-    claimButton.disabled = true;
-    claimButton.textContent = "Loading ad...";
+  // Initialize H5 Games Ads configuration
+  if (typeof adConfig === 'function') {
+    adConfig({
+      preloadAdBreaks: 'on',
+      sound: 'on',
+      onReady: function () {
+        console.log('H5 Games Ads initialized and ready');
+      }
+    });
+  }
 
-    const granted = await adManager.showRewarded();
-    if (granted) {
-      addCoins(config.rewardedCoins);
-      closePopup();
-      return;
+  function showLoader() {
+    const loader = document.getElementById("adLoaderModal");
+    if (loader) {
+      loader.style.visibility = "visible";
+      loader.style.opacity = "1";
     }
+  }
 
-    claimButton.disabled = false;
-    claimButton.textContent = "Ad unavailable — try again";
+  function hideLoader() {
+    const loader = document.getElementById("adLoaderModal");
+    if (loader) {
+      loader.style.visibility = "hidden";
+      loader.style.opacity = "0";
+    }
+  }
+
+  function claimReward() {
+    claimButton.disabled = true;
+    showLoader();
+
+    // 1.5s buffer for ad to preload
+    setTimeout(() => {
+      if (typeof adBreak !== "function") {
+        console.error("adBreak not available");
+        hideLoader();
+        claimButton.disabled = false;
+        return;
+      }
+
+      let adShown = false;
+      let callbackFired = false;
+
+      adBreak({
+        type: "reward",
+        name: "claim_coins",
+        beforeReward: function (showAdFn) {
+          console.log("Ad ready, showing now...");
+          adShown = true;
+          hideLoader();
+          showAdFn();
+        },
+        adViewed: function () {
+          callbackFired = true;
+          addCoins(config.rewardedCoins);
+          closePopup();
+        },
+        adDismissed: function () {
+          callbackFired = true;
+          console.log("Ad dismissed - closing popup");
+          hideLoader();
+          closePopup();
+        },
+        adBreakDone: function (placementInfo) {
+          console.log("adBreakDone status:", placementInfo ? placementInfo.breakStatus : "unknown");
+          hideLoader();
+          
+          if (adShown) {
+            closePopup();
+          } else if (!adShown && !callbackFired) {
+            console.log("No ad served - enabling claim button for retry");
+            claimButton.disabled = false;
+          }
+        }
+      });
+    }, 1500);
   }
 
   closeButton.addEventListener("click", closePopup);

@@ -9,8 +9,20 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=2">
+  <meta name="google-adsense-account" content="ca-pub-1484482880870768">
+  <style>
+      @keyframes modalSpin {
+          to {
+              transform: rotate(360deg);
+          }
+      }
+  </style>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1484482880870768"
      crossorigin="anonymous"></script>
+  <script>
+      window.adsbygoogle = window.adsbygoogle || [];
+      var adBreak = adConfig = function(o) { adsbygoogle.push(o); }
+  </script>
 </head>
 <body>
   <main class="container">
@@ -67,8 +79,54 @@
       <h2 class="new-reward">New Reward Available</h2>
       <h2 class="get-coins" id="rewardTitle">Get Instant <span id="rewardAmount">100</span> Coins!</h2>
       <p>Watch a simple ad and get rewarded</p>
-      <button class="claim-button" id="claimReward" type="button">Claim</button>
+      <button class="claim-button" id="claimReward" type="button" style="position: relative;">
+        <span style="position: absolute; top: 4px; right: 8px; font-size: 8px; font-weight: 700; font-family: Arial, sans-serif; color: rgba(255,255,255,0.75); letter-spacing: 0.5px; line-height: 1;">AD</span>
+        <span class="btn-text">Claim</span>
+      </button>
     </div>
+  </div>
+
+  <!-- Ad Loading Modal -->
+  <div id="adLoaderModal" style="
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.65);
+      z-index: 99999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.2s ease, visibility 0.2s ease;
+  ">
+      <div style="
+          background: #ffffff;
+          border: 1.5px solid #2f2f2f;
+          border-radius: 24px;
+          padding: 40px 48px 32px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 20px;
+          min-width: 200px;
+      ">
+          <div style="
+              width: 52px;
+              height: 52px;
+              border: 4px solid rgba(169, 210, 231, 0.2);
+              border-top-color: #08ABFD;
+              border-radius: 50%;
+              animation: modalSpin 0.8s linear infinite;
+          "></div>
+          <p style="
+              margin: 0;
+              color: #08ABFD;
+              font-family: Rubik, sans-serif;
+              font-size: 16px;
+              font-weight: 600;
+              letter-spacing: 0.5px;
+          ">Loading...</p>
+      </div>
   </div>
 
   <script src="quiz-data.js?v=2"></script>
