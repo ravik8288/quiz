@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>TwitQuiz - Test Your Knowledge</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="container">
+    <header class="header"></header>
+
+
+
+    <div class="ads-container">
+      <div class="tops-ads ads">
+        <div id="ad-top" class="custom-gpt-ad"></div>
+        <div class="ads-label">Advertisement</div>
+      </div>
+    </div>
+
+    <div class="quiz-card" id="quizCard">
+      <div class="score-display">
+        Score: <span class="score-number" id="scoreDisplay">0</span>
+      </div>
+      <div class="question-counter" id="questionCounter">Question 1 of 2</div>
+      <div class="question" id="questionText"></div>
+      <div class="options" id="optionsContainer"></div>
+      <div class="answer-message" id="answerMessage" aria-live="polite"></div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+    </div>
+
+    <div class="ads-container margin-top-20px" id="secondaryAd">
+      <div class="tops-ads ads">
+        <div id="ad-middle" class="custom-gpt-ad"></div>
+        <div class="ads-label">Advertisement</div>
+      </div>
+    </div>
+
+
+
+    <div class="bottom-content">
+      <div class="featured-section">
+        <h3>Why Choose Our Quiz Platform?</h3>
+        <div class="features-grid">
+          <div class="feature-item">
+            <h5>🏆 Daily Rewards</h5>
+            <p>Login daily to get bonus coins and special rewards</p>
+          </div>
+          <div class="feature-item">
+            <h5>📱 Mobile Friendly</h5>
+            <p>Play seamlessly on any device - mobile, tablet, or desktop</p>
+          </div>
+          <div class="feature-item">
+            <h5>⚡ Live Contests</h5>
+            <p>Join real-time quiz competitions with players worldwide</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="fact_box">
+        <h5>#Fun Fact</h5>
+        <p id="funFact"></p>
+      </div>
+
+      <div class="how-to-play">
+        <h3>How to Play?</h3>
+        <ol class="play-steps">
+          <li>Select your favorite quiz category</li>
+          <li>Answer questions correctly to earn coins</li>
+          <li>Compete on leaderboards</li>
+          <li>Redeem coins for exciting rewards</li>
+        </ol>
+      </div>
+    </div>
+
+    <nav class="footer-links" aria-label="Footer links">
+      <a href="about.html">About Us</a>
+      <a href="contact.html">Contact Us</a>
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="terms-conditions.html">Terms &amp; Conditions</a>
+    </nav>
+  </main>
+
+  <div class="ads-popup-overlay" id="adsPopup" hidden>
+    <div class="ads-popup" role="dialog" aria-modal="true" aria-label="Advertisement">
+      <div class="close-wrap">
+        <button class="ads-close-btn" id="closeAd" type="button" disabled>✖</button>
+        <div class="ads-loading" id="adTimer">⏳ Please wait 5 seconds...</div>
+      </div>
+      <div id="ad-interstitial" class="custom-gpt-ad interstitial-ad"></div>
+      <div class="popup-ad-label">Advertisement</div>
+    </div>
+  </div>
+
+  <script src="quiz-data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

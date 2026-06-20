@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>TwitQuiz - Score</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="container">
+    <header class="start-top-bar">
+      <a class="menu-btn score-home" href="start.html" aria-label="Back to categories">←</a>
+      <h1 class="start-logo">TwitQuiz</h1>
+      <div class="start-coins">🪙 <span id="scoreCoins">0</span></div>
+    </header>
+
+    <div class="ads-container">
+      <div id="score-ad-top" class="custom-gpt-ad"></div>
+      <div class="ads-label">Advertisement</div>
+    </div>
+
+    <div class="result-container">
+      <div class="result_box">
+        <div class="winner-art">🏆</div>
+        <h3>You Have Got <span class="coin_set" id="scoreReward">100</span> Coins</h3>
+        <p class="category-result-title" id="scoreCategory"></p>
+        <div class="category-stats">
+          <div><strong id="scoreValue">0</strong><span>Score</span></div>
+          <div><strong id="scoreCorrect">0</strong><span>Correct</span></div>
+          <div><strong id="scoreWrong">0</strong><span>Wrong</span></div>
+        </div>
+        <a href="index.html" class="play_now_btn">Go To Home</a>
+      </div>
+    </div>
+
+    <div class="ads-container margin-top-20px">
+      <div id="score-ad-middle" class="custom-gpt-ad"></div>
+      <div class="ads-label">Advertisement</div>
+    </div>
+  </main>
+  <script src="quiz-data.js"></script>
+  <script src="score.js"></script>
+</body>
+</html>
