@@ -1398,6 +1398,31 @@ body {
   box-shadow: 0 10px 25px rgba(99, 102, 241, .3);
 }
 
+.claim-button.loading {
+  pointer-events: none;
+  opacity: 0.8;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.claim-button-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #ffffff;
+  animation: buttonSpin 0.8s linear infinite;
+  display: inline-block;
+}
+
+@keyframes buttonSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .play-circle {
   font-size: 13px;
 }

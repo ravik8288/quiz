@@ -43,32 +43,32 @@
     });
   }
 
-  function showLoader() {
-    const loader = document.getElementById("adLoaderModal");
-    if (loader) {
-      loader.style.visibility = "visible";
-      loader.style.opacity = "1";
+  const btnText = claimButton.querySelector(".btn-text");
+
+  function showButtonLoading() {
+    claimButton.disabled = true;
+    claimButton.classList.add("loading");
+    if (btnText) {
+      btnText.innerHTML = `<span class="claim-button-spinner"></span>Loading...`;
     }
   }
 
-  function hideLoader() {
-    const loader = document.getElementById("adLoaderModal");
-    if (loader) {
-      loader.style.visibility = "hidden";
-      loader.style.opacity = "0";
+  function hideButtonLoading() {
+    claimButton.disabled = false;
+    claimButton.classList.remove("loading");
+    if (btnText) {
+      btnText.textContent = "Claim";
     }
   }
 
   function claimReward() {
-    claimButton.disabled = true;
-    showLoader();
+    showButtonLoading();
 
     // 1.5s buffer for ad to preload
     setTimeout(() => {
       if (typeof adBreak !== "function") {
         console.error("adBreak not available");
-        hideLoader();
-        claimButton.disabled = false;
+        hideButtonLoading();
         return;
       }
 
@@ -81,7 +81,6 @@
         beforeReward: function (showAdFn) {
           console.log("Ad ready, showing now...");
           adShown = true;
-          hideLoader();
           showAdFn();
         },
         adViewed: function () {
@@ -92,18 +91,16 @@
         adDismissed: function () {
           callbackFired = true;
           console.log("Ad dismissed - closing popup");
-          hideLoader();
           closePopup();
         },
         adBreakDone: function (placementInfo) {
           console.log("adBreakDone status:", placementInfo ? placementInfo.breakStatus : "unknown");
-          hideLoader();
+          hideButtonLoading();
           
           if (adShown) {
             closePopup();
           } else if (!adShown && !callbackFired) {
             console.log("No ad served - enabling claim button for retry");
-            claimButton.disabled = false;
           }
         }
       });

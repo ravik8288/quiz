@@ -81,14 +81,14 @@
 
     questions: [
       {
-        question: "What is the capital of France?",
-        options: ["Paris", "London", "Berlin", "Madrid"],
-        correct: "Paris"
+        question: "What is the largest ocean on Earth?",
+        options: ["Atlantic Ocean", "Indian Ocean", "Pacific Ocean", "Arctic Ocean"],
+        correct: "Pacific Ocean"
       },
       {
-        question: "Which planet is known as the Red Planet?",
-        options: ["Venus", "Mars", "Jupiter", "Saturn"],
-        correct: "Mars"
+        question: "Which country is home to the kangaroo?",
+        options: ["South Africa", "Australia", "New Zealand", "Canada"],
+        correct: "Australia"
       }
     ]
   };
