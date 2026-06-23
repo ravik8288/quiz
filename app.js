@@ -57,6 +57,15 @@
     sessionStorage.setItem(stateKey, JSON.stringify(quizState));
   }
 
+  function shuffle(array) {
+    const copy = [...array];
+    for (let i = copy.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [copy[i], copy[j]] = [copy[j], copy[i]];
+    }
+    return copy;
+  }
+
   function renderQuestion() {
     const item = config.questions[currentQuestion];
     elements.score.textContent = quizState.score;
@@ -67,7 +76,8 @@
     elements.message.textContent = "";
     elements.options.replaceChildren();
 
-    item.options.forEach(option => {
+    const shuffledOptions = shuffle(item.options);
+    shuffledOptions.forEach(option => {
       const button = document.createElement("button");
       button.type = "button";
       button.className = "option";
